@@ -1,65 +1,59 @@
 body {
-    font-family: "Source Sans Pro", Arial, sans-serif;
-  }
-  
-  .post-card {
-    margin: 20px;
-    display: flex;
-    width: 483px;
-    height: 278px;
-    background-color: #fff;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-      0 2px 1px -1px rgba(0, 0, 0, 0.12);
-  }
-  
-  .image {
-    width: 185px;
-    height: 278px;
-  }
-  
-  .info {
-    margin: 20px 0 0 20px;
-  }
-  
-  .title {
-    padding: 0;
-    margin: 0;
-    word-wrap: break-word;
-    white-space: normal;
-    width: 100%;
-    display: block;
-    font-weight: 600;
-    font-size: 1.1em;
-    line-height: 1.1em;
-    display: block;
-    font-weight: 600;
-    font-size: 1.1em;
-    line-height: 1.1em;
-  }
-  .overview {
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-    line-height: 1.2em;
-    margin-top: 30px;
-    font-size: 0.9em;
-    line-height: 1.2em;
-    white-space: wrap;
-    max-height: 5.6em;
-    content: "...";
-    text-overflow: ellipsis;
-  }
-  
-  .view_more {
-    border-top: 1px solid #e3e3e3;
-    bottom: 0;
-    left: 0;
-    font-size: 0.8em;
-    padding: 16px;
-    margin-top: 209px;
-  }
-  .view_more:hover {
-    cursor: pointer;
-  }
-  
+  font-family: "Source Sans Pro", Arial, sans-serif;
+}
+.post-card {
+  margin: 20px;
+  display: flex;
+  width: 483px;
+  height: 278px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+.image {
+  width: 185px;
+  height: 278px;
+}
+.info {
+  margin: 20px 0 0 20px;
+}
+.title {
+  padding: 0;
+  margin: 0;
+  word-wrap: break-word;
+  white-space: normal;
+  width: 100%;
+  display: block;
+  font-weight: 600;
+  font-size: 1.1em;
+  line-height: 1.1em;
+  display: block;
+  font-weight: 600;
+  font-size: 1.1em;
+  line-height: 1.1em;
+}
+.overview {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  margin-top: 30px;
+  font-size: 0.9em;
+  line-height: 1.2em;
+  white-space: wrap;
+  max-height: 5.6em;
+  content: "...";
+  text-overflow: ellipsis;
+}
+.view_more {
+  border-top: 1px solid #e3e3e3;
+  bottom: 0;
+  left: 0;
+  font-size: 0.8em;
+  padding: 16px;
+  margin-top: 209px;
+}
+.view_more:hover {
+  cursor: pointer;
+}

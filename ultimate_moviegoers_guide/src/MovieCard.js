@@ -1,6 +1,6 @@
 import React from "react";
 import "./MovieCard.css";
-import CardModal from "./CardModal";
+import Modal from "./Modal";
 class MovieCard extends React.Component {
   constructor() {
     super();
