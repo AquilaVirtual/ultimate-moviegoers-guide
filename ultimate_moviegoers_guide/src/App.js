@@ -11,7 +11,7 @@ class App extends Component {
     this.performSearch("ant man");
   }
   performSearch(searchTerm) {
-    const key = process.env.REACT_APP_SECRET;
+    const key = process.env.API_KEY;
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${key}=` + searchTerm
