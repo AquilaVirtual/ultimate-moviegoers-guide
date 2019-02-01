@@ -1,7 +1,6 @@
 import React from "react";
 import "./MovieCard.css";
-import ChoreModal from "./ChoreModal";
-
+import CardModal from "./CardModal";
 class MovieCard extends React.Component {
   constructor() {
     super();
@@ -13,7 +12,6 @@ class MovieCard extends React.Component {
     this.setState({
       open: !this.state.open
     });
-
     console.log("State of matter", this.state.open);
   };
   render() {
