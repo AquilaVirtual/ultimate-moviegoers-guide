@@ -12,95 +12,86 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      rows: null,
-      open: false,
+      movies: null,    
     }
+    //Here we have Avengers as a default search term, so when a user visits the site, they done just see a blank page
     this.performSearch("avengers")
   } 
+  //Noticeably, there's no life-cycle method being being called outside render in the whole of the application, 
+  //this is because none is needed. And state is always populated at every time the application is running, which performSearch takes care of.
   performSearch(searchTerm) {
-
     axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${key}=` + searchTerm)
-    .then(response =>{
-      console.log("Bastarred", response)
+    .then(response =>{     
       const results = response.data.results
       var movieRows = []
       results.forEach((movie) => {
-        movie.poster_src = "https://image.tmdb.org/t/p/w185" + movie.poster_path
-        //  console.log(movie.poster_path)
+        movie.poster_src = "https://image.tmdb.org/t/p/w185" + movie.poster_path      
 
         const movieRow = <div className="card-wrapp"><MovieCard key={movie.id} movie={movie}/> </div>
         movieRows.push(movieRow)
       })
-      this.setState({rows: movieRows, open: !this.state.open})
+      this.setState({movies: movieRows})
     })
     .catch(err => {
-      console.log(err)
+      console.log("Erro here", err)
     })
   }
+  //The reason why all methods for getting Rating, PlayingNow, Popular infos is because there's no obvious resean to separate concern.
+  //It's farely easy to refactor for scalability
   playingNow = () => { 
     const currentDate = moment().format().slice(0, 10);
     console.log("This moment", currentDate)
     axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&query=primary_release_date.gte=${currentDate}&primary_release_date.lte=${currentDate}`)
-    .then(response =>{
-      console.log("Bastarred", response)
+    .then(response =>{   
       const results = response.data.results
       var movieRows = []
 
       results.forEach((movie) => {
-        movie.poster_src = "https://image.tmdb.org/t/p/w185" + movie.poster_path
-        //  console.log(movie.poster_path)
+        movie.poster_src = "https://image.tmdb.org/t/p/w185" + movie.poster_path   
 
         const movieRow = <div className="card-wrapp"><MovieCard key={movie.id} movie={movie}/> </div>
         movieRows.push(movieRow)
       })
-      this.setState({rows: movieRows})
+      this.setState({movies: movieRows})
     })
     .catch(err => {
-      console.log(err)
+      console.log("Erro here", err)
     })
   }
   topRated = () => {   
-    // /discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc
     axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&query=certification_country=US&certification=R&sort_by=vote_average.desc`)
-    .then(response =>{
-      console.log("Bastarred", response)
+    .then(response =>{   
       const results = response.data.results
       var movieRows = []
 
       results.forEach((movie) => {
-        movie.poster_src = "https://image.tmdb.org/t/p/w185" + movie.poster_path
-        //  console.log(movie.poster_path)
+        movie.poster_src = "https://image.tmdb.org/t/p/w185" + movie.poster_path       
 
         const movieRow = <div className="card-wrapp"><MovieCard key={movie.id} movie={movie}/> </div>
         movieRows.push(movieRow)
       })
-      this.setState({rows: movieRows})
+      this.setState({movies: movieRows})
     })
     .catch(err => {
-      console.log(err)
+      console.log("Erro here", err)
     })
   }
-  mostPopular = () => { 
-    const now = moment().format().slice(0, 10);
-    console.log("This moment", now)
-    //discover/movie?sort_by=popularity.desc
+  mostPopular = () => {     
     axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&query=sort_by=popularity.desc`)
-    .then(response =>{
-      console.log("Bastarred", response)
+    .then(response =>{ 
       const results = response.data.results
       var movieRows = []
 
       results.forEach((movie) => {
-        movie.poster_src = "https://image.tmdb.org/t/p/w185" + movie.poster_path
-        //  console.log(movie.poster_path)
+        movie.poster_src = "https://image.tmdb.org/t/p/w185" + movie.poster_path      
 
         const movieRow = <div className="card-wrapp"><MovieCard key={movie.id} movie={movie}/> </div>
         movieRows.push(movieRow)
       })
-      this.setState({rows: movieRows})
+      this.setState({movies: movieRows})
     })
     .catch(err => {
-      console.log(err)
+      console.log("Erro here", err)
     })
   }
   searchChangeHandler(event) {
@@ -137,7 +128,7 @@ class App extends Component {
         </div>       
         </div>
         <div className="card-wrapp">
-        {this.state.rows}  
+        {this.state.movies}  
         </div>
      
       </div>

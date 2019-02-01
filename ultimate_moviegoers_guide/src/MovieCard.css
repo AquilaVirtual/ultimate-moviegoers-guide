@@ -17,6 +17,9 @@ body {
 .info {
   margin: 20px 0 0 20px;
 }
+.release_date{ 
+  margin-top: 14px;
+}
 .title {
   padding: 0;
   margin: 0;
@@ -38,7 +41,7 @@ body {
   overflow: hidden;
   position: relative;
   line-height: 1.2em;
-  margin-top: 30px;
+  margin-top: 26px;
   font-size: 0.9em;
   line-height: 1.2em;
   white-space: wrap;

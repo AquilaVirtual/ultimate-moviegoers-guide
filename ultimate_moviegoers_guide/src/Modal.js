@@ -61,7 +61,7 @@ class Modal extends React.Component {
           </DialogContent>
           <DialogActions>
             <div className="buttons-wrap">
-              <button className="signin-buttons" onClick={this.handleClose}>
+              <button  onClick={this.handleClose}>
                 X
               </button>
             </div>

@@ -1,21 +1,21 @@
 .image_large {
-  width: 348px;
-  height: 487px;
+    width: 348px;
+    height: 487px;
 }
 
 .overview_large {
-  color: black;
+color: black;
 }
 
 .header_large {
-  margin-bottom: 14px;
+margin-bottom: 14px;
 }
 
 .title_large {
-  color: black;
-  margin-bottom: 08px;
-  display: block;
-  font-weight: 600;
-  font-size: 1.1em;
-  line-height: 2.1em;
+ color: black;
+ margin-bottom: 08px;
+ display: block;
+ font-weight: 600;
+ font-size: 1.1em;
+ line-height: 2.1em;
 }
