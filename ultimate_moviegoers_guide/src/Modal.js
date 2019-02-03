@@ -7,30 +7,20 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 import "./modal.css";
-
 class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: false
+        open: false
     };
   }
-
   handleClickOpen = () => {
     this.setState({ open: true });
   };
-
   handleClose = () => {
     this.setState({ open: false });
-  };
-
-  handleInputChange = event => {
-    event.preventDefault();
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  render() {
-    console.log("Getting some", this.props.movie);
+  };  
+  render() {    
     return (
       <div>
         <div className="" onClick={this.handleClickOpen}>
@@ -42,6 +32,13 @@ class Modal extends React.Component {
           aria-labelledby="dialog-title"
         >
           <DialogTitle id="dialog-title">
+          <DialogActions>
+            <div className="button-wrap">
+              <button  onClick={this.handleClose}>
+                X
+              </button>
+            </div>
+          </DialogActions>
             <div className="header_large">
               <div className="title_large"> {this.props.movie.title}</div>
               <div className="release-date_large">
@@ -56,16 +53,9 @@ class Modal extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              <div className="overview_large">{this.props.movie.overview}</div>
+              <span className="overview_large">{this.props.movie.overview}</span>
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
-            <div className="buttons-wrap">
-              <button  onClick={this.handleClose}>
-                X
-              </button>
-            </div>
-          </DialogActions>
         </Dialog>
       </div>
     );

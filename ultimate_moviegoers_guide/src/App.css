@@ -7,14 +7,15 @@
 .App {
   text-align: center;
 }
-.card-wrapp {
+#card-wrapp {
  display: flex;
- flex-wrap: wrap; 
+ flex-wrap: wrap;
+ margin-top: 146px; 
 }
 .dropdown {
   display: inline-block;
   position: absolute;
-  left: 75%;
+  left: 93%;
   margin-top: 15px;
   border: 1px solid lightgray;
   width: 79px;
@@ -24,7 +25,7 @@
   border-radius: 3px;
   color: rgb(92, 88, 88);
 }
-.dropdown-content {
+#dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -34,7 +35,7 @@
   text-align: justify;
   z-index: 1;
 }
-.item {
+#item {
   margin-top: 5px;
 }
 .item:hover {
@@ -42,13 +43,23 @@
   color: lightgray;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover #dropdown-content {
   display: block;
 }
-.logo {
+#logo {
   margin: 18px;
 }
-
+#logo:hover {
+  cursor: pointer;
+}
+.nav-bar {
+  position: fixed;
+  width: 1140px;
+  z-index: 1;
+}
+.text-input {
+  font-size: 14px;
+}
 .App-header {
   background-color: #222;
   height: 150px;
