@@ -16,12 +16,12 @@ body {
 .image {
   width: 185px;
   height: 278px;
-  background:none;
+  background: none;
 }
 .info {
   margin: 20px 0 0 20px;
 }
-.release_date{ 
+.release_date {
   margin-top: 14px;
 }
 .title {

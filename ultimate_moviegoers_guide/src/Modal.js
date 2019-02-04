@@ -11,7 +11,7 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        open: false
+      open: false
     };
   }
   handleClickOpen = () => {
@@ -19,8 +19,8 @@ class Modal extends React.Component {
   };
   handleClose = () => {
     this.setState({ open: false });
-  };  
-  render() {    
+  };
+  render() {
     return (
       <div>
         <div className="" onClick={this.handleClickOpen}>
@@ -32,13 +32,11 @@ class Modal extends React.Component {
           aria-labelledby="dialog-title"
         >
           <DialogTitle id="dialog-title">
-          <DialogActions>
-            <div className="button-wrap">
-              <button  onClick={this.handleClose}>
-                X
-              </button>
-            </div>
-          </DialogActions>
+            <DialogActions>
+              <div className="button-wrap">
+                <button onClick={this.handleClose}>X</button>
+              </div>
+            </DialogActions>
             <div className="header_large">
               <div className="title_large"> {this.props.movie.title}</div>
               <div className="release-date_large">
@@ -53,7 +51,9 @@ class Modal extends React.Component {
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              <span className="overview_large">{this.props.movie.overview}</span>
+              <span className="overview_large">
+                {this.props.movie.overview}
+              </span>
             </DialogContentText>
           </DialogContent>
         </Dialog>
