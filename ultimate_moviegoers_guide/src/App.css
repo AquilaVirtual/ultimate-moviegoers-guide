@@ -7,7 +7,7 @@
 .App {
   text-align: center;
 }
-#card-wrapp {
+.card-wrapp {
   display: flex;
   flex-wrap: wrap;
   margin-top: 146px;
@@ -25,7 +25,7 @@
   border-radius: 3px;
   color: rgb(92, 88, 88);
 }
-#dropdown-content {
+.dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -35,14 +35,14 @@
   text-align: justify;
   z-index: 1;
 }
-#item {
+.item {
   margin-top: 5px;
 }
-#item:hover {
+.item:hover {
   cursor: pointer;
   color: lightgray;
 }
-.dropdown:hover #dropdown-content {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 #logo {
