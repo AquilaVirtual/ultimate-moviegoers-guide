@@ -28,7 +28,7 @@ class App extends Component {
   performSearch(searchTerm) {
     axios
       .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=` +
+        `https://api.themoviedb.org/3/search/movie?api_key=1b5adf76a72a13bad99b8fc0c68cb085&query=` +
           searchTerm
       )
       .then(response => {
@@ -61,7 +61,7 @@ class App extends Component {
   nowPlaying = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=1b5adf76a72a13bad99b8fc0c68cb085&language=en-US&page=1`
       )
       .then(response => {
         const results = response.data.results;
@@ -89,7 +89,7 @@ class App extends Component {
   topRated = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=1b5adf76a72a13bad99b8fc0c68cb085&language=en-US&page=1`
       )
       .then(response => {
         const results = response.data.results;
@@ -119,7 +119,7 @@ class App extends Component {
   mostPopular = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=`
+        `https://api.themoviedb.org/3/discover/movie?api_key=1b5adf76a72a13bad99b8fc0c68cb085&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=`
       )
       .then(response => {
         console.log("These response", response);
