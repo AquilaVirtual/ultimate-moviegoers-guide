@@ -130,6 +130,7 @@ class App extends Component {
             movie.poster_src =
               "https://image.tmdb.org/t/p/w185" + movie.poster_path;
           } else {
+            // a placeholder for a null poster_path
             movie.poster_src = "https://picsum.photos/200/300/?random";
           }
           const movieItem= (
