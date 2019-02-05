@@ -61,7 +61,7 @@ class App extends Component {
   nowPlaying = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}85&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1`
       )
       .then(response => {
         const results = response.data.results;
@@ -184,14 +184,14 @@ class App extends Component {
             <ul className="dropdown">
               <span>Filter</span>
 
-              <div id="dropdown-content">
-                <li id="item">
+              <div className="dropdown-content">
+                <li className="item">
                   <span onClick={this.nowPlaying}> Now Playing</span>
                 </li>
-                <li id="item">
+                <li className="item">
                   <span onClick={this.topRated}> Top Rated</span>
                 </li>
-                <li id="item">
+                <li className="item">
                   <span onClick={this.mostPopular}>Popular</span>
                 </li>
               </div>
