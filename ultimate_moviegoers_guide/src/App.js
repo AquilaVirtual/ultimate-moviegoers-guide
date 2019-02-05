@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import moment from "moment";
 import "./App.css";
 import MovieCard from "./MovieCard.js";
 import $ from "jquery";
 
 import axios from "axios";
-const key = process.env.API_KEY;
+let key = process.env.API_KEY;
 class App extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +32,7 @@ class App extends Component {
           searchTerm
       )
       .then(response => {
+        // console.log("These response", response)
         // console.log("Some Response", response)
         const results = response.data.results;
         var movieRows = [];
@@ -53,37 +53,76 @@ class App extends Component {
         this.setState({ movies: movieRows });
       })
       .catch(err => {
-        console.log("Error here", err);
+        console.log("Erro here", err);
       });
   }
   //The reason why all methods for getting Rating, PlayingNow, Popular infos is because there's no obvious resean to separate concern.
   //It's farely easy to refactor for scalability
-  filterActions = () => {
-    const currentDate = moment()
-      .format()
-      .slice(0, 10);
-    var listItems = document.querySelectorAll("ul li");
-    listItems.forEach(function(item) {
-      item.onclick = function(e) {
-        if (this.innerText === "Now Playing") {
-          this.setState({
-            url: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&query=primary_release_date.gte=${currentDate}&primary_release_date.lte=${currentDate}`
-          });
-        } else if (this.innerText === "Top Rated") {
-          this.setState({
-            url: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&query=certification_country=US&certification=R&sort_by=vote_average.desc`
-          });
-        } else if (this.innerText === "Popular") {
-          this.setState({
-            url: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&query=sort_by=popularity.desc`
-          });
-        }
-      };
-    });
-    const { url } = this.state;
+  nowPlaying = () => {
     axios
-      .get(url)
+      .get(
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1`
+      )
       .then(response => {
+        const results = response.data.results;
+        var movieRows = [];
+        results.forEach(movie => {
+          if (movie.poster_path) {
+            movie.poster_src =
+              "https://image.tmdb.org/t/p/w185" + movie.poster_path;
+          } else {
+            movie.poster_src = "https://picsum.photos/200/300/?random";
+          }
+          const movieRow = (
+            <div className="card-wrapp" key={movie.id}>
+              <MovieCard key={movie.id} movie={movie} />{" "}
+            </div>
+          );
+          movieRows.push(movieRow);
+        });
+        this.setState({ movies: movieRows });
+      })
+      .catch(err => {
+        console.log("Erro here", err);
+      });
+  };
+  topRated = () => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`
+      )
+      .then(response => {
+        const results = response.data.results;
+        var movieRows = [];
+        results.forEach(movie => {
+          if (movie.poster_path) {
+            if (movie.poster_path) {
+              movie.poster_src =
+                "https://image.tmdb.org/t/p/w185" + movie.poster_path;
+            } else {
+              movie.poster_src = "https://picsum.photos/200/300/?random";
+            }
+          }
+          const movieRow = (
+            <div className="card-wrapp" key={movie.id}>
+              <MovieCard key={movie.id} movie={movie} />{" "}
+            </div>
+          );
+          movieRows.push(movieRow);
+        });
+        this.setState({ movies: movieRows });
+      })
+      .catch(err => {
+        console.log("Erro here", err);
+      });
+  };
+  mostPopular = () => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=`
+      )
+      .then(response => {
+        console.log("These response", response);
         const results = response.data.results;
         var movieRows = [];
         results.forEach(movie => {
@@ -145,21 +184,21 @@ class App extends Component {
             <ul className="dropdown">
               <span>Filter</span>
 
-              <div className="dropdown-content">
-                <li className="item">
-                  <a onClick={()=> {this.filterActions()}}>Now Playing</a>
+              <div id="dropdown-content">
+                <li id="item">
+                  <span onClick={this.nowPlaying}> Now Playing</span>
                 </li>
-                <li className="item">
-                  <a onClick={()=> {this.filterActions()}}>Top Rated</a>
+                <li id="item">
+                  <span onClick={this.topRated}> Top Rated</span>
                 </li>
-                <li className="item">
-                  <a onClick={()=> {this.filterActions()}}>Popular</a>
+                <li id="item">
+                  <span onClick={this.mostPopular}>Popular</span>
                 </li>
               </div>
             </ul>
           </div>
         </div>
-        <div className="card-wrapp">{this.state.movies}</div>
+        <div id="card-wrapp">{this.state.movies}</div>
       </div>
     );
   }

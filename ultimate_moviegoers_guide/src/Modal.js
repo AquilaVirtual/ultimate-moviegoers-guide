@@ -21,6 +21,14 @@ class Modal extends React.Component {
     this.setState({ open: false });
   };
   render() {
+    let year = this.props.movie.release_date
+      .split("")
+      .splice(0, 4)
+      .join("");
+    let dayAndMonth = this.props.movie.release_date
+      .split("")
+      .splice(5, 7)
+      .join("");
     return (
       <div>
         <div className="" onClick={this.handleClickOpen}>
@@ -39,9 +47,7 @@ class Modal extends React.Component {
             </DialogActions>
             <div className="header_large">
               <div className="title_large"> {this.props.movie.title}</div>
-              <div className="release-date_large">
-                {this.props.movie.release_date}
-              </div>
+              <div className="release-date_large">{dayAndMonth + -+year}</div>
             </div>
             <img
               className="image_large"
