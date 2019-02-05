@@ -35,7 +35,7 @@ class App extends Component {
         // console.log("These response", response)
         // console.log("Some Response", response)
         const results = response.data.results;
-        var movieRows = [];
+        var movieArray= [];
         results.forEach(movie => {
           if (movie.poster_path) {
             movie.poster_src =
@@ -43,14 +43,14 @@ class App extends Component {
           } else {
             movie.poster_src = "https://picsum.photos/200/300/?random";
           }
-          const movieRow = (
+          const movieItem = (
             <div className="card-wrapp" key={movie.id}>
               <MovieCard key={movie.id} movie={movie} />{" "}
             </div>
           );
-          movieRows.push(movieRow);
+          movieArray.push(movieItem);
         });
-        this.setState({ movies: movieRows });
+        this.setState({ movies: movieArray });
       })
       .catch(err => {
         console.log("Erro here", err);
@@ -65,7 +65,7 @@ class App extends Component {
       )
       .then(response => {
         const results = response.data.results;
-        var movieRows = [];
+        var movieArray = [];
         results.forEach(movie => {
           if (movie.poster_path) {
             movie.poster_src =
@@ -73,14 +73,14 @@ class App extends Component {
           } else {
             movie.poster_src = "https://picsum.photos/200/300/?random";
           }
-          const movieRow = (
+          const movieItem= (
             <div className="card-wrapp" key={movie.id}>
               <MovieCard key={movie.id} movie={movie} />{" "}
             </div>
           );
-          movieRows.push(movieRow);
+          movieArray.push(movieItem);
         });
-        this.setState({ movies: movieRows });
+        this.setState({ movies: movieArray });
       })
       .catch(err => {
         console.log("Erro here", err);
@@ -93,7 +93,7 @@ class App extends Component {
       )
       .then(response => {
         const results = response.data.results;
-        var movieRows = [];
+        let movieArray = [];
         results.forEach(movie => {
           if (movie.poster_path) {
             if (movie.poster_path) {
@@ -103,14 +103,14 @@ class App extends Component {
               movie.poster_src = "https://picsum.photos/200/300/?random";
             }
           }
-          const movieRow = (
+          const movieItem = (
             <div className="card-wrapp" key={movie.id}>
               <MovieCard key={movie.id} movie={movie} />{" "}
             </div>
           );
-          movieRows.push(movieRow);
+          movieArray.push(movieItem);
         });
-        this.setState({ movies: movieRows });
+        this.setState({ movies: movieArray });
       })
       .catch(err => {
         console.log("Erro here", err);
@@ -122,9 +122,9 @@ class App extends Component {
         `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`
       )
       .then(response => {
-        console.log("These response", response);
+        // console.log("These response", response);
         const results = response.data.results;
-        var movieRows = [];
+        let movieArray = [];
         results.forEach(movie => {
           if (movie.poster_path) {
             movie.poster_src =
@@ -132,20 +132,20 @@ class App extends Component {
           } else {
             movie.poster_src = "https://picsum.photos/200/300/?random";
           }
-          const movieRow = (
+          const movieItem= (
             <div className="card-wrapp" key={movie.id}>
               <MovieCard key={movie.id} movie={movie} />{" "}
             </div>
           );
-          movieRows.push(movieRow);
+          movieArray.push(movieItem);
         });
-        this.setState({ movies: movieRows });
+        this.setState({ movies: movieArray });
       })
       .catch(err => {
         console.log("Erro here", err);
       });
   };
-  searchChangeHandler(event) {
+  handleSeachChange(event) {
     console.log(event.target.value);
     const boundObject = this;
     const searchTerm = event.target.value;
@@ -178,7 +178,7 @@ class App extends Component {
             <input
               className="input-box"
               style={{ fontSize: "14px" }}
-              onChange={this.searchChangeHandler.bind(this)}
+              onChange={this.handleSeachChange.bind(this)}
               placeholder="Search for a movie..."
             />
             <ul className="dropdown">
