@@ -19,3 +19,8 @@
 .button-wrap {
   position: absolute;
 }
+.link {  
+  margin-left: 61%;
+  position: absolute;
+  width: 21%;
+}

@@ -22,8 +22,12 @@ class Filter extends Component {
     this.setState({
       item: item
     });
-    //this.props.filterActions(this.state.item);
+    //this.props.filterActions(this.state.item);    
   };
+  componenDidMount = () => {
+    this.props.mostPopular();
+    window.scrollTop(0, 0);
+    }
   render() {
     return (
       <div>

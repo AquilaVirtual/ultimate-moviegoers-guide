@@ -47,8 +47,16 @@ class Modal extends React.Component {
             </DialogActions>
             <div className="header_large">
               <div className="title_large"> {this.props.movie.title}</div>
-              <div className="release-date_large">{dayAndMonth + - + year}</div>
+              <div className="release-date_large">{dayAndMonth + -+year}</div>
             </div>
+            <a
+              className="link"
+              href={`https://www.themoviedb.org/movie/${this.props.movie.id}`}
+              target="blank"
+              onClick={this.handleClose}
+            >
+              Link to more information
+            </a>
             <img
               className="image_large"
               alt="poster"

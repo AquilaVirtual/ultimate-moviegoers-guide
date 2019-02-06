@@ -15,8 +15,7 @@ class App extends Component {
     };
     //Here we have Avengers as a default search term, so when a user visits the site, they done just see a blank page
     this.performSearch("avengers");
-  }
-  
+  } 
   //Noticeably, there's no life-cycle method being being called outside render in the whole of the application,
   //this is because none is needed. And state is always populated at every time the application is running, which performSearch takes care of.
   performSearch = searchTerm => {
