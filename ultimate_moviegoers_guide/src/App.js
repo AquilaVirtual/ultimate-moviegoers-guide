@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import "./App.css";
 import MovieCard from "./MovieCard.js";
 import Navbar from "./Navbar";
-import $ from "jquery";
+// import Filter from "./Filter";
 
 import axios from "axios";
 let key = process.env.API_KEY;
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       movies: null,
       url: null
@@ -16,17 +16,9 @@ class App extends Component {
     //Here we have Avengers as a default search term, so when a user visits the site, they done just see a blank page
     this.performSearch("avengers");
   }
-  //A simple reload function to reload the cards section when the logo is clicked.
-  reload() {
-    $(document).ready(function() {
-      $("#logo").click(function() {
-        $("#card-wrapp").load("#card-wrapp");
-      });
-    });
-  }
   //Noticeably, there's no life-cycle method being being called outside render in the whole of the application,
   //this is because none is needed. And state is always populated at every time the application is running, which performSearch takes care of.
-  performSearch= (searchTerm) => {
+  performSearch = searchTerm => {
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=` +
@@ -36,7 +28,7 @@ class App extends Component {
         // console.log("These response", response)
         // console.log("Some Response", response)
         const results = response.data.results;
-        var movieArray= [];
+        var movieArray = [];
         results.forEach(movie => {
           if (movie.poster_path) {
             movie.poster_src =
@@ -56,8 +48,9 @@ class App extends Component {
       .catch(err => {
         console.log("Erro here", err);
       });
-  }
-  //The reason why all methods for getting Rating, PlayingNow, Popular infos is because there's no obvious resean to separate concern.  
+  };
+  //The reason why all methods for getting Rating, PlayingNow, Popular infos is because there's no obvious resean to separate concern.
+  // nowPlaying, topRated, and mostPopular methods need to be refactored into one method for code to be DRY.
   nowPlaying = () => {
     axios
       .get(
@@ -73,7 +66,7 @@ class App extends Component {
           } else {
             movie.poster_src = "https://picsum.photos/200/300/?random";
           }
-          const movieItem= (
+          const movieItem = (
             <div className="card-wrapp" key={movie.id}>
               <MovieCard key={movie.id} movie={movie} />{" "}
             </div>
@@ -130,10 +123,10 @@ class App extends Component {
             movie.poster_src =
               "https://image.tmdb.org/t/p/w185" + movie.poster_path;
           } else {
-            // a placeholder for a null poster_path
+            //Placeholder for a null poster_path
             movie.poster_src = "https://picsum.photos/200/300/?random";
           }
-          const movieItem= (
+          const movieItem = (
             <div className="card-wrapp" key={movie.id}>
               <MovieCard key={movie.id} movie={movie} />{" "}
             </div>
@@ -148,8 +141,13 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="container ">  
-        <Navbar  performSearch = {this.performSearch} mostPopular={this.mostPopular} topRated={this.topRated} nowPlaying={this.nowPlaying}/>      
+      <div className="container ">
+        <Navbar
+          performSearch={this.performSearch}
+          mostPopular={this.mostPopular}
+          topRated={this.topRated}
+          nowPlaying={this.nowPlaying}
+        />
         <div id="card-wrapp">{this.state.movies}</div>
       </div>
     );
