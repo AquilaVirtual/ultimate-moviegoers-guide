@@ -8,7 +8,10 @@ class Navbar extends Component {
     const searchTerm = event.target.value;
     this.props.performSearch(searchTerm);
   };
-  //A simple reload method to reload the cards section when the logo is clicked.
+  componentDidMount(){
+      this.reload() 
+    }
+    //A simple reload method to reload the cards section when the logo is clicked.
   reload = () => {
     $(document).ready(function() {
       $("#logo").click(function() {
@@ -16,6 +19,7 @@ class Navbar extends Component {
       });
     });
   };
+
   render() {
     return (
       <div className="nav-bar">
