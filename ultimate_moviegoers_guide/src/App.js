@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import MovieCard from "./MovieCard.js";
+import Navbar from "./Navbar";
 import $ from "jquery";
 
 import axios from "axios";
@@ -25,7 +26,7 @@ class App extends Component {
   }
   //Noticeably, there's no life-cycle method being being called outside render in the whole of the application,
   //this is because none is needed. And state is always populated at every time the application is running, which performSearch takes care of.
-  performSearch(searchTerm) {
+  performSearch= (searchTerm) => {
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=` +
@@ -56,8 +57,7 @@ class App extends Component {
         console.log("Erro here", err);
       });
   }
-  //The reason why all methods for getting Rating, PlayingNow, Popular infos is because there's no obvious resean to separate concern.
-  //It's farely easy to refactor for scalability
+  //The reason why all methods for getting Rating, PlayingNow, Popular infos is because there's no obvious resean to separate concern.  
   nowPlaying = () => {
     axios
       .get(
@@ -146,59 +146,10 @@ class App extends Component {
         console.log("Erro here", err);
       });
   };
-  handleSeachChange(event) {
-    console.log(event.target.value);
-    const boundObject = this;
-    const searchTerm = event.target.value;
-    boundObject.performSearch(searchTerm);
-  }
   render() {
     return (
-      <div className="container ">
-        <div className="nav-bar">
-          <table className="titleBar">
-            <tbody>
-              <tr>
-                <td>
-                  <img
-                    onClick={this.reload}
-                    id="logo"
-                    alt="app icon"
-                    width="74px"
-                    src="green_app_icon.svg"
-                  />
-                </td>
-                <td width="8" />
-                <td>
-                  <h1>Ultimate Moviegoers Guide</h1>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div className="nav">
-            <input
-              className="input-box"
-              style={{ fontSize: "14px" }}
-              onChange={this.handleSeachChange.bind(this)}
-              placeholder="Search for a movie..."
-            />
-            <ul className="dropdown">
-              <span>Filter</span>
-
-              <div className="dropdown-content">
-                <li className="item">
-                  <span onClick={this.nowPlaying}> Now Playing</span>
-                </li>
-                <li className="item">
-                  <span onClick={this.topRated}> Top Rated</span>
-                </li>
-                <li className="item">
-                  <span onClick={this.mostPopular}>Popular</span>
-                </li>
-              </div>
-            </ul>
-          </div>
-        </div>
+      <div className="container ">  
+        <Navbar  performSearch = {this.performSearch} mostPopular={this.mostPopular} topRated={this.topRated} nowPlaying={this.nowPlaying}/>      
         <div id="card-wrapp">{this.state.movies}</div>
       </div>
     );
