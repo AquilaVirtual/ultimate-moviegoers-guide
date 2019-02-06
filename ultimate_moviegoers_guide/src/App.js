@@ -49,8 +49,7 @@ class App extends Component {
       .catch(err => {
         console.log("Erro here", err);
       });
-  };
-  //The reason why all methods for getting Rating, PlayingNow, Popular infos is because there's no obvious resean to separate concern.
+  };  
   // nowPlaying, topRated, and mostPopular methods need to be refactored into one method for code to be DRY.
   nowPlaying = () => {
     axios
