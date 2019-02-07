@@ -4,7 +4,7 @@ import MovieCard from "./MovieCard.js";
 import Navbar from "./Navbar";
 
 import axios from "axios";
-let key = process.env.API_KEY;
+ let key = process.env.API_KEY;
 class App extends Component {
   constructor() {
     super();
