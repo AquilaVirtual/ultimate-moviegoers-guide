@@ -51,7 +51,7 @@ class App extends Component {
       url =  `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1`
     }
     else if(val === "Top Rated") {
-      url =  `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}1b5adf76a72a13bad99b8fc0c68cb085&language=en-US&page=1`
+      url =  `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`
     }
     else if(val === "Popular") {
       url = `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`
