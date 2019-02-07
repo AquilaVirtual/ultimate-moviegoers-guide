@@ -18,7 +18,6 @@ const BootstrapInput = withStyles(theme => ({
     border: '1px solid #ced4da',
     fontSize: 16,
     width: 'auto',
-//padding: '10px 26px 10px 12px',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
@@ -53,7 +52,6 @@ const styles = theme => ({
     fontSize: 18,
   },
 });
-
 class Filter extends React.Component {
   state = {
     filter: '',
@@ -68,7 +66,7 @@ class Filter extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <form className={classes.root} autoComplete="off">    
+      <form className={classes.root} autoComplete="off"> 
        
         <FormControl className={classes.margin}>        
           <NativeSelect
@@ -87,7 +85,6 @@ class Filter extends React.Component {
     );
   }
 }
-
 Filter.propTypes = {
   classes: PropTypes.object.isRequired,
 };
