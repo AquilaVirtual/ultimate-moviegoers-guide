@@ -35,6 +35,17 @@
 .item {
   margin-top: 5px;
 }
+
+.filter {
+  position: absolute;
+  left: 88%;
+}
+
+.filter-label {
+  position: absolute;
+    left: -26%;
+    margin-top: 18px;
+}
 .item:hover {
   cursor: pointer;
   color: lightgray;
@@ -53,6 +64,12 @@
   width: 1140px;
   z-index: 1;
 }
+    @media (max-width: 1199){
+      .nav-bar {   
+        width: 1000px;
+      
+      }
+    }
 h1 {
   font-size: 2em;
   margin: 30px 0;

@@ -49,73 +49,26 @@ class App extends Component {
         console.log("Erro here", err);
       });
   };  
-  // nowPlaying, topRated, and mostPopular methods need to be refactored into one method for code to be DRY.
-  nowPlaying = () => {
+
+  filterActions = (val) => {
+   let url = "";
+    console.log("Val in App", val)
+    if(val === "Now Playing") {
+      url =  `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1`
+    }
+    else if(val === "Top Rated") {
+      url =  `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`
+    }
+    else if(val === "Popular") {
+      url = `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`
+    }
     axios
-      .get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1`
-      )
-      .then(response => {
-        const results = response.data.results;
-        var movieArray = [];
-        results.forEach(movie => {
-          if (movie.poster_path) {
-            movie.poster_src =
-              "https://image.tmdb.org/t/p/w185" + movie.poster_path;
-          } else {
-            movie.poster_src = "https://picsum.photos/200/300/?random";
-          }
-          const movieItem = (
-            <div className="card-wrapp" key={movie.id}>
-              <MovieCard key={movie.id} movie={movie} />{" "}
-            </div>
-          );
-          movieArray.push(movieItem);
-        });
-        this.setState({ movies: movieArray });
-      })
-      .catch(err => {
-        console.log("Erro here", err);
-      });
-  };
-  topRated = () => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`
-      )
-      .then(response => {
-        const results = response.data.results;
-        let movieArray = [];
-        results.forEach(movie => {
-          if (movie.poster_path) {
-            if (movie.poster_path) {
-              movie.poster_src =
-                "https://image.tmdb.org/t/p/w185" + movie.poster_path;
-            } else {
-              movie.poster_src = "https://picsum.photos/200/300/?random";
-            }
-          }
-          const movieItem = (
-            <div className="card-wrapp" key={movie.id}>
-              <MovieCard key={movie.id} movie={movie} />{" "}
-            </div>
-          );
-          movieArray.push(movieItem);
-        });
-        this.setState({ movies: movieArray });
-      })
-      .catch(err => {
-        console.log("Erro here", err);
-      });
-  };
-  mostPopular = () => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`
+      .get(url
       )
       .then(response => {
         // console.log("These response", response);
         const results = response.data.results;
+        if(results) {
         let movieArray = [];
         results.forEach(movie => {
           if (movie.poster_path) {
@@ -133,17 +86,21 @@ class App extends Component {
           movieArray.push(movieItem);
         });
         this.setState({ movies: movieArray });
+      }
+      else {
+        return;
+      }
       })
       .catch(err => {
-        console.log("Erro here", err);
-      });
+        console.log("Error here", err);
+      });    
   };
   render() {
     return (
       <div className="container ">
         <Navbar
           performSearch={this.performSearch}
-          mostPopular={this.mostPopular}
+          filterActions={this.filterActions}
           topRated={this.topRated}
           nowPlaying={this.nowPlaying}
         />

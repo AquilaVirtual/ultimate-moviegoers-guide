@@ -49,11 +49,11 @@ class Navbar extends Component {
             onChange={this.handleSeachChange}
             placeholder="Search for a movie..."
           />
+          <div className="filter"><span className="filter-label"> Filter:</span>
           <Filter
-            mostPopular={this.props.mostPopular}
-            topRated={this.props.topRated}
-            nowPlaying={this.props.nowPlaying}
+          filterActions={this.props.filterActions}           
           />
+          </div>
         </div>
       </div>
     );

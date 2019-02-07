@@ -20,7 +20,7 @@ class Modal extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-  render() {
+  render() {    
     let year = this.props.movie.release_date
       .split("")
       .splice(0, 4)
