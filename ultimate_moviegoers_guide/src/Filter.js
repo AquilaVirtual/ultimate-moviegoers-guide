@@ -77,7 +77,7 @@ class Filter extends React.Component {
           >
             <option value="" />
             <option value={"Now Playing"} >Now Playing</option>
-            <option value={"Popular"} >Popular</option>
+            <option value={"Popular"} >Most Popular</option>
             <option value={"Top Rated"} >Top Rated</option>
           </NativeSelect>
         </FormControl>
