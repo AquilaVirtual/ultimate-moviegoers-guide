@@ -54,7 +54,7 @@ class App extends Component {
       url =  `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`
     }
     else if(val === "Popular") {
-      url = `https://api.themoviedb.org/3/movie/popular?api_key=${key}0c68cb085&language=en-US&page=1`
+      url = `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`
     }
     axios
       .get(url
